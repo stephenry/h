@@ -33,6 +33,8 @@ module queue_cntrl #(
   parameter int            N
 
 , parameter int            ADDR_W = $clog2(N)
+
+, parameter bit            FLOP_OUT = 0
 ) (
 // -------------------------------------------------------------------------- //
 // Enqueue
@@ -59,6 +61,8 @@ module queue_cntrl #(
 
 `H_DFFR(logic [ADDR_W:0], ra, 'b0, clk);
 `H_DFFR(logic [ADDR_W:0], wa, 'b0, clk);
+logic                         full_w;
+logic                         empty_w;
 
 // ========================================================================== //
 //                                                                            //
@@ -88,10 +92,23 @@ assign o_empty_w = (ra_w == wa_w);
 // ========================================================================== //
 
 assign o_wen = i_push;
-assign o_ren = i_pop;
 
 assign o_wa = wa_r [ADDR_W - 1:0];
-assign o_ra = ra_r [ADDR_W - 1:0];
+
+if (FLOP_OUT) begin
+
+   assign o_ren = (~empty_w) & (i_push | i_pop);
+   assign o_ra = ra_w [ADDR_W - 1:0];
+
+end else begin
+
+   assign o_ren = 'b0; // Not applicable.
+   assign o_ra = ra_r [ADDR_W - 1:0];
+
+end
+
+assign o_full_w = full_w;
+assign o_empty_w = empty_w;
 
 endmodule : queue_cntrl
 
