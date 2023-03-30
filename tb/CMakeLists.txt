@@ -51,7 +51,9 @@ target_sources(driver
   "${CMAKE_SOURCE_DIR}/tb/tb.cc"
   "${CMAKE_SOURCE_DIR}/tb/driver.cc")
 
-configure_file("${CMAKE_SOURCE_DIR}/tb/cfg_common.h.in" cfg_common.h)
+configure_file("${CMAKE_SOURCE_DIR}/tb/cfg_common.h.in" "cfg_common.h")
+configure_file("${CMAKE_SOURCE_DIR}/tb/cfg.h.in" "cfg.h")
+configure_file("${CMAKE_SOURCE_DIR}/tb/cfg_pkg.vh.in" "cfg_pkg.vh")
 
 target_include_directories(driver
   PRIVATE

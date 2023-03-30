@@ -1,0 +1,26 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(lldb) Launch STK Smoke",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceRoot}/build/tb/driver",
+            "args":[
+                "-v",
+                "--run", "tb_stk_smoke",
+                "--vcd"
+            ],
+            "stopAtEntry": false,
+            "cwd":"${workspaceFolder}",
+            "MIMode": "lldb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true,
+                }
+            ]
+        }
+    ]
+}

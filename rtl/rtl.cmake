@@ -46,6 +46,10 @@ set(COMMON_SOURCES
     "${SRC_ROOT}/common/mux.sv")
 
 set(RTL_SOURCES
+    "${SRC_ROOT}/h_bdy_eng_exe.sv"
+    "${SRC_ROOT}/h_bdy_eng_al.sv"
+    "${SRC_ROOT}/h_bdy_eng.sv"
+    "${SRC_ROOT}/h_bdy.sv"
     "${SRC_ROOT}/h.sv")
 
 set(RTL_INCLUDE_PATHS

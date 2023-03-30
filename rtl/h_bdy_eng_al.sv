@@ -1,5 +1,5 @@
 //========================================================================== //
-// Copyright (c) 2022, Stephen Henry
+// Copyright (c) 2023, Stephen Henry
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -25,13 +25,23 @@
 // POSSIBILITY OF SUCH DAMAGE.
 //========================================================================== //
 
-`ifndef H_RTL_H_PKG_VH
-`define H_RTL_H_PKG_VH
+`include "common_defs.vh"
 
+`include "h_pkg.vh"
 `include "cfg_pkg.vh"
 
-package h_pkg;
+module h_bdy_eng_al (
 
-endpackage : h_pkg
+// -------------------------------------------------------------------------- //
+// Clk/Reset
+  input wire logic                                clk
+, input wire logic                                arst_n
+);
 
-`endif
+// ========================================================================== //
+//                                                                            //
+//  Instances                                                                 //
+//                                                                            //
+// ========================================================================== //
+
+endmodule : h_bdy_eng_al

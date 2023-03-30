@@ -25,13 +25,13 @@
 // POSSIBILITY OF SUCH DAMAGE.
 //========================================================================== //
 
-`ifndef H_RTL_H_PKG_VH
-`define H_RTL_H_PKG_VH
+`ifndef H_TB_STK_CFG_PKG_VH
+`define H_TB_STK_CFG_PKG_VH
 
-`include "cfg_pkg.vh"
+package cfg_pkg;
 
-package h_pkg;
+parameter int ENGS_N = @H_ENGINES_N@;
 
-endpackage : h_pkg
+endpackage : cfg_pkg
 
 `endif

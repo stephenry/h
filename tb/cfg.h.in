@@ -25,13 +25,16 @@
 // POSSIBILITY OF SUCH DAMAGE.
 //========================================================================== //
 
-`ifndef H_RTL_H_PKG_VH
-`define H_RTL_H_PKG_VH
+#ifndef H_TB_CFG_PKG_V
+#define H_TB_CCFG_PKG_V
 
-`include "cfg_pkg.vh"
+#include "cfg_common.h"
+#include <cstddef>
 
-package h_pkg;
+namespace cfg {
 
-endpackage : h_pkg
+  static constexpr std::size_t ENGS_N = @Q_ENGINES_N@;
 
-`endif
+} // namespace cfg
+
+#endif
