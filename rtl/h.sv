@@ -46,6 +46,11 @@ module h (
 , output wire h_pkg::v_t                          rsp_v
 
 // -------------------------------------------------------------------------- //
+// User-Supplied Hash Function
+, input wire h_pkg::h_t                           hash_h
+, output wire h_pkg::k_t                          hash_k
+
+// -------------------------------------------------------------------------- //
 // Clk/Reset
 , input wire logic                                clk
 , input wire logic                                arst_n
@@ -61,7 +66,16 @@ module h (
 //
 h_bdy u_h_bdy (
 //
-  .clk                        (clk                          )
+  .cmd_vld                    (cmd_vld                      )
+, .cmd_opcode                 (cmd_opcode                   )
+, .cmd_k                      (cmd_k                        )
+, .cmd_v                      (cmd_v                        )
+//
+, .rsp_vld                    (rsp_vld                      )
+, .rsp_status                 (rsp_status                   )
+, .rsp_v                      (rsp_v                        )
+//
+, .clk                        (clk                          )
 , .arst_n                     (arst_n                       )
 );
 

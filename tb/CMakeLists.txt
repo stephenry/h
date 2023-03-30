@@ -36,7 +36,12 @@ set(H_K_W 32)
 # Width of Value in bits
 set(H_V_W 32)
 
+# Width of the Hash result in bits
+set(H_H_W 10)
+
 set(TARGET "sim")
+
+set(H_TB_HASH_TYPE "PATHOLOGICAL")
 
 # ---------------------------------------------------------------------------- #
 # Includes
@@ -69,6 +74,7 @@ target_sources(tbd
 configure_file("${CMAKE_SOURCE_DIR}/tb/cfg_common.h.in" "cfg_common.h")
 configure_file("${CMAKE_SOURCE_DIR}/tb/cfg.h.in" "cfg.h")
 configure_file("${CMAKE_SOURCE_DIR}/tb/cfg_pkg.vh.in" "cfg_pkg.vh")
+configure_file("${CMAKE_SOURCE_DIR}/tb/tb_pkg.vh.in" "tb_pkg.vh")
 
 target_include_directories(tbd PRIVATE
   "${CMAKE_CURRENT_BINARY_DIR}"
@@ -94,6 +100,7 @@ set(TB_SOURCES
   "${COMMON_SOURCES}"
   "${RTL_SOURCES}"
   "${TECH_SOURCES}"
+  "${CMAKE_CURRENT_SOURCE_DIR}/hash/hash_pathological.sv"
   "${CMAKE_CURRENT_SOURCE_DIR}/tb.sv")
 
 if (ENABLE_SVA)

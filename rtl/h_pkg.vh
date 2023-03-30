@@ -38,6 +38,9 @@ typedef logic [cfg_pkg::K_W - 1:0] k_t;
 // Generic Value type.
 typedef logic [cfg_pkg::V_W - 1:0] v_t;
 
+// Generic Hash type.
+typedef logic [cfg_pkg::H_W - 1:0] h_t;
+
 localparam int OPCODE_W = 3;
 
 typedef enum logic [OPCODE_W - 1:0] {

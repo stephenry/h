@@ -1,5 +1,5 @@
 //========================================================================== //
-// Copyright (c) 2023, Stephen Henry
+// Copyright (c) 2022, Stephen Henry
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -25,44 +25,21 @@
 // POSSIBILITY OF SUCH DAMAGE.
 //========================================================================== //
 
-`include "common_defs.vh"
-
-`include "h_pkg.vh"
 `include "cfg_pkg.vh"
+`include "tb_pkg.vh"
+`include "h_pkg.vh"
 
-module h_bdy (
-
-// -------------------------------------------------------------------------- //
-// Command Interface
-  input wire logic                                cmd_vld
-, input wire h_pkg::opcode_t                      cmd_opcode
-, input wire h_pkg::k_t                           cmd_k
-, input wire h_pkg::v_t                           cmd_v
-
-// -------------------------------------------------------------------------- //
-// Response Interface
-, output wire logic                               rsp_vld
-, output wire h_pkg::status_t                     rsp_status
-, output wire h_pkg::v_t                          rsp_v
-
-// -------------------------------------------------------------------------- //
-// Clk/Reset
-, input wire logic                                clk
-, input wire logic                                arst_n
+module hash_pathological #(parameter int K, parameter int H) (
+  input wire logic [K - 1:0]                      k
+, output wire logic [H - 1:0]                     h
 );
 
-// ========================================================================== //
-//                                                                            //
-//  Instances                                                                 //
-//                                                                            //
-// ========================================================================== //
-
 // -------------------------------------------------------------------------- //
+// Pathologically bad synthetic hash function where the entire domain
+// of the K maps to the same bucket (in this case '0). Effectively
+// useless in a practial sense, but useful to exercise the single
+// engine case.
 //
-h_bdy_eng u_h_bdy_eng (
-//
-  .clk                        (clk                          )
-, .arst_n                     (arst_n                       )
-);
+assign h = '0;
 
-endmodule : h_bdy
+endmodule : hash_pathological
