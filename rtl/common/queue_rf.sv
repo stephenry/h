@@ -30,9 +30,18 @@
 
 module queue_rf #(
   // Total number of entries; (constrained to be a power-of-2)
+  //
   parameter int            N
+
   // The width of each entry
+  //
 , parameter int            W
+
+  // Optionally flop entry at the head of the queue (when non-empty)
+  // to improve downstream timing at the cost of area. The overall timing
+  // characteristics of the queue remains unchanged.
+  //
+, parameter bit            FLOP_OUT = 0
 ) (
 // -------------------------------------------------------------------------- //
 // Enqueue

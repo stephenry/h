@@ -30,6 +30,8 @@
 
 package cfg_pkg;
 
+parameter int CMD_QUEUE_N = 4;
+
 // The total number of compute engines.
 parameter int ENGS_N = @H_ENGINES_N@;
 

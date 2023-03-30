@@ -1,5 +1,5 @@
 //========================================================================== //
-// Copyright (c) 2022, Stephen Henry
+// Copyright (c) 2023, Stephen Henry
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -25,21 +25,31 @@
 // POSSIBILITY OF SUCH DAMAGE.
 //========================================================================== //
 
-`include "cfg_pkg.vh"
-`include "tb_pkg.vh"
-`include "h_pkg.vh"
+`include "common_defs.vh"
 
-module hash_pathological #(parameter int K, parameter int H) (
-  input wire logic [K - 1:0]                      i_k
-, output wire logic [H - 1:0]                     o_h
+`include "h_pkg.vh"
+`include "cfg_pkg.vh"
+
+module h_bdy_fe_dec (
+// -------------------------------------------------------------------------- //
+// Command Interface
+  input wire h_pkg::opcode_t                      i_opcode
+
+// Microcode
+, output wire logic                               o_has_k
+, output wire logic                               o_has_v
+, output wire logic                               o_has_hash
 );
 
-// -------------------------------------------------------------------------- //
-// Pathologically bad synthetic hash function where the entire domain
-// of the K maps to the same bucket (in this case '0). Effectively
-// useless in a practial sense, but useful to exercise the single
-// engine case.
-//
-assign o_h = '0;
+import h_pkg::*;
 
-endmodule : hash_pathological
+// Opcode has KEY
+assign o_has_k = i_opcode inside {OPCODE_INSERT, OPCODE_FIND};
+
+// Opcode has VALUE
+assign o_has_v = i_opcode inside {OPCODE_INSERT};
+
+// Opcode has Hash
+assign o_has_hash = i_opcode inside {OPCODE_INSERT, OPCODE_FIND};
+
+endmodule : h_bdy_fe_dec

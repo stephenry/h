@@ -34,21 +34,23 @@ module h (
 
 // -------------------------------------------------------------------------- //
 // Command Interface
-  input wire logic                                cmd_vld
-, input wire h_pkg::opcode_t                      cmd_opcode
-, input wire h_pkg::k_t                           cmd_k
-, input wire h_pkg::v_t                           cmd_v
+  input wire logic                                i_cmd_vld_w
+, input wire h_pkg::opcode_t                      i_cmd_opcode_w
+, input wire h_pkg::k_t                           i_cmd_k_w
+, input wire h_pkg::v_t                           i_cmd_v_w
+//
+, output wire logic                               o_cmd_rdy_w
 
 // -------------------------------------------------------------------------- //
 // Response Interface
-, output wire logic                               rsp_vld
-, output wire h_pkg::status_t                     rsp_status
-, output wire h_pkg::v_t                          rsp_v
+, output wire logic                               o_rsp_vld
+, output wire h_pkg::status_t                     o_rsp_status
+, output wire h_pkg::v_t                          o_rsp_v
 
 // -------------------------------------------------------------------------- //
 // User-Supplied Hash Function
-, input wire h_pkg::h_t                           hash_h
-, output wire h_pkg::k_t                          hash_k
+, input wire h_pkg::h_t                           i_hash_h_w
+, output wire h_pkg::k_t                          o_hash_k_r
 
 // -------------------------------------------------------------------------- //
 // Clk/Reset
@@ -66,14 +68,18 @@ module h (
 //
 h_bdy u_h_bdy (
 //
-  .cmd_vld                    (cmd_vld                      )
-, .cmd_opcode                 (cmd_opcode                   )
-, .cmd_k                      (cmd_k                        )
-, .cmd_v                      (cmd_v                        )
+  .i_cmd_vld_w                (i_cmd_vld_w                  )
+, .i_cmd_opcode_w             (i_cmd_opcode_w               )
+, .i_cmd_k_w                  (i_cmd_k_w                    )
+, .i_cmd_v_w                  (i_cmd_v_w                    )
+, .o_cmd_rdy_w                (o_cmd_rdy_w                  )
 //
-, .rsp_vld                    (rsp_vld                      )
-, .rsp_status                 (rsp_status                   )
-, .rsp_v                      (rsp_v                        )
+, .o_rsp_vld                  (o_rsp_vld                    )
+, .o_rsp_status               (o_rsp_status                 )
+, .o_rsp_v                    (o_rsp_v                      )
+//
+, .i_hash_h_w                 (i_hash_h_w                   )
+, .o_hash_k_r                 (o_hash_k_r                   )
 //
 , .clk                        (clk                          )
 , .arst_n                     (arst_n                       )

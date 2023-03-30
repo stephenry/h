@@ -49,6 +49,7 @@ set(RTL_SOURCES
     "${SRC_ROOT}/h_bdy_eng_exe.sv"
     "${SRC_ROOT}/h_bdy_eng_al.sv"
     "${SRC_ROOT}/h_bdy_eng.sv"
+    "${SRC_ROOT}/h_bdy_fe_dec.sv"
     "${SRC_ROOT}/h_bdy_fe.sv"
     "${SRC_ROOT}/h_bdy.sv"
     "${SRC_ROOT}/h.sv")
