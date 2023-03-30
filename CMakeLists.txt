@@ -46,7 +46,7 @@ list(APPEND CMAKE_MODULE_PATH
     "${CMAKE_SOURCE_DIR}/rtl")
 
 include(FindVerilator)
-# include(venv)
+include(venv)
 
 set(H_TOOLS_ROOT ${CMAKE_BINARY_DIR}/tools)
 add_subdirectory(rtl)

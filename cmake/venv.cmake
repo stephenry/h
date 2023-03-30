@@ -36,7 +36,7 @@ if (${Python3_FOUND})
     message("${H_VENV_ROOT}/bin/pip3 install -r ${CMAKE_SOURCE_DIR}/requirements.tx")
     execute_process(COMMAND ${Python3_EXECUTABLE} -m venv  ${H_VENV_ROOT})
     execute_process(COMMAND ${H_VENV_ROOT}/bin/pip3 install
-        -r ${CMAKE_SOURCE_DIR}/requirements.txt)
+        -r ${CMAKE_SOURCE_DIR}/scripts/requirements.txt)
     set(H_PYTHON3 ${H_VENV_ROOT}/bin/python3)
 else ()
     message(FATAL [[
