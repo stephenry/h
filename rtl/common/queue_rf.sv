@@ -130,10 +130,8 @@ queue_cntrl #(.N, .ADDR_W, .FLOP_OUT) u_queue_cntrl (
 // ========================================================================== //
 
 if (FLOP_OUT) begin : flop_out_en_GEN
-
-assign flop_out_GEN.pop_dat_flop_w  = empty_r ? i_push_dat : rdata;
-assign flop_out_GEN.pop_dat_flop_en = ren;
-
+  assign flop_out_GEN.pop_dat_flop_w  = empty_r ? i_push_dat : rdata;
+  assign flop_out_GEN.pop_dat_flop_en = ren;
 end : flop_out_en_GEN
 
 // ========================================================================== //
@@ -143,13 +141,9 @@ end : flop_out_en_GEN
 // ========================================================================== //
 
 if (FLOP_OUT) begin : pop_dat_GEN
-
-assign o_pop_dat = flop_out_GEN.pop_dat_flop_r;
-
+  assign o_pop_dat = flop_out_GEN.pop_dat_flop_r;
 end else begin
-
-assign o_pop_dat = rdata;
-
+  assign o_pop_dat = rdata;
 end
 
 assign o_full_w = full_w;

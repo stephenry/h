@@ -73,7 +73,6 @@ logic                         empty_w;
 // -------------------------------------------------------------------------- //
 //
 assign wa_w = i_push ? (wa_r + 'b1) : wa_r;
-
 assign ra_w = i_pop ? (ra_r + 'b1) : ra_r;
 
 // -------------------------------------------------------------------------- //
@@ -96,15 +95,11 @@ assign o_wen = i_push;
 assign o_wa = wa_r [ADDR_W - 1:0];
 
 if (FLOP_OUT) begin
-
-   assign o_ren = (~empty_w) & (i_push | i_pop);
-   assign o_ra = ra_w [ADDR_W - 1:0];
-
+  assign o_ren = (~empty_w) & (i_push | i_pop);
+  assign o_ra = ra_w [ADDR_W - 1:0];
 end else begin
-
-   assign o_ren = 'b0; // Not applicable.
-   assign o_ra = ra_r [ADDR_W - 1:0];
-
+  assign o_ren = 'b0; // Not applicable.
+  assign o_ra = ra_r [ADDR_W - 1:0];
 end
 
 assign o_full_w = full_w;
