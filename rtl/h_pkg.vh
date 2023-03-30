@@ -32,6 +32,35 @@
 
 package h_pkg;
 
+// Generic (Opaque) Key type.
+typedef logic [cfg_pkg::K_W - 1:0] k_t;
+
+// Generic Value type.
+typedef logic [cfg_pkg::V_W - 1:0] v_t;
+
+localparam int OPCODE_W = 3;
+
+typedef enum logic [OPCODE_W - 1:0] {
+  // Equivalent to: std::unordered_map<K, V>::insert
+  OPCODE_INSERT               = OPCODE_W'('b000)
+
+  // Equivalent to: std::unordered_map<K, V>::find
+, OPCODE_FIND                 = OPCODE_W'('b100)
+
+  // Equivalent to: std::unordered_map<K, V>::clear
+, OPCODE_CLEAR                = OPCODE_W'('b111)
+} opcode_t;
+
+localparam int STATUS_W = 3;
+
+typedef enum logic [STATUS_W - 1:0] {
+  // Operation has completed successfully
+  STATUS_SUCCESS              = STATUS_W'('b000)
+
+  // Equivalent to: return of std::unordered_map<K, V>::end()
+, STATUS_NOTFOUND             = STATUS_W'('b111)
+} status_t;
+
 endpackage : h_pkg
 
 `endif

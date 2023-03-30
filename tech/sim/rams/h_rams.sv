@@ -26,7 +26,6 @@
 //========================================================================== //
 
 `include "common_defs.vh"
-`include "stk/stk_pkg.vh"
 
 module h_rams (
 

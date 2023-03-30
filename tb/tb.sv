@@ -26,28 +26,22 @@
 //========================================================================== //
 
 `include "cfg_pkg.vh"
+`include "h_pkg.vh"
 
 module tb (
-// -------------------------------------------------------------------------- //
-// Master Interface
-  input wire logic                                i_mst_rsp_vld
-, input wire logic                                i_mst_rsp_sop
-, input wire logic                                i_mst_rsp_eop
-, input wire logic [127:0]                        i_mst_rsp_dat
-
-, output wire logic                               o_mst_cmd_vld
-, output wire logic                               o_mst_cmd_sop
-, output wire logic                               o_mst_cmd_eop
-, output wire logic [127:0]                       o_mst_cmd_dat
 
 // -------------------------------------------------------------------------- //
-// Slave Interface
-, input wire logic                                i_slv_cmd_vld
-, input wire logic                                i_slv_cmd_rnw
-, input wire logic [63:0]                         i_slv_cmd_dat
-//
-, output wire logic                               o_slv_rsp_vld
-, output wire logic [63:0]                        o_slv_rsp_dat
+// Command Interface
+  input wire logic                                cmd_vld
+, input wire h_pkg::opcode_t                      cmd_opcode
+, input wire h_pkg::k_t                           cmd_k
+, input wire h_pkg::v_t                           cmd_v
+
+// -------------------------------------------------------------------------- //
+// Response Interface
+, output wire logic                               rsp_vld
+, output wire h_pkg::status_t                     rsp_status
+, output wire h_pkg::v_t                          rsp_v
 
 // -------------------------------------------------------------------------- //
 // Testbench State
@@ -73,24 +67,16 @@ int                                     tb_cycle;
 //                                                                            //
 // ========================================================================== //
 
-q u_q (
+h u_h (
 //
-  .i_mst_rsp_vld                       (i_mst_rsp_vld)
-, .i_mst_rsp_sop                       (i_mst_rsp_sop)
-, .i_mst_rsp_eop                       (i_mst_rsp_eop)
-, .i_mst_rsp_dat                       (i_mst_rsp_dat)
+  .cmd_vld                             (cmd_vld)
+, .cmd_opcode                          (cmd_opcode)
+, .cmd_k                               (cmd_k)
+, .cmd_v                               (cmd_v)
 //
-, .o_mst_cmd_vld                       (o_mst_cmd_vld)
-, .o_mst_cmd_sop                       (o_mst_cmd_sop)
-, .o_mst_cmd_eop                       (o_mst_cmd_eop)
-, .o_mst_cmd_dat                       (o_mst_cmd_dat)
-//
-, .i_slv_cmd_vld                       (i_slv_cmd_vld)
-, .i_slv_cmd_rnw                       (i_slv_cmd_rnw)
-, .i_slv_cmd_dat                       (i_slv_cmd_dat)
-//
-, .o_slv_rsp_vld                       (o_slv_rsp_vld)
-, .o_slv_rsp_dat                       (o_slv_rsp_dat)
+, .rsp_vld                             (rsp_vld)
+, .rsp_status                          (rsp_status)
+, .rsp_v                               (rsp_v)
 //
 , .clk                                 (clk)
 , .arst_n                              (arst_n)

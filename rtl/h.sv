@@ -33,12 +33,21 @@
 module h (
 
 // -------------------------------------------------------------------------- //
-// Clk/Reset
+// Command Interface
+  input wire logic                                cmd_vld
+, input wire h_pkg::opcode_t                      cmd_opcode
+, input wire h_pkg::k_t                           cmd_k
+, input wire h_pkg::v_t                           cmd_v
 
+// -------------------------------------------------------------------------- //
+// Response Interface
+, output wire logic                               rsp_vld
+, output wire h_pkg::status_t                     rsp_status
+, output wire h_pkg::v_t                          rsp_v
 
 // -------------------------------------------------------------------------- //
 // Clk/Reset
-  input wire logic                                clk
+, input wire logic                                clk
 , input wire logic                                arst_n
 );
 
@@ -50,7 +59,7 @@ module h (
 
 // -------------------------------------------------------------------------- //
 //
-h_eng u_h_bdy (
+h_bdy u_h_bdy (
 //
   .clk                        (clk                          )
 , .arst_n                     (arst_n                       )
@@ -61,7 +70,6 @@ h_eng u_h_bdy (
 h_rams u_h_rams (
 //
   .clk                        (clk                          )
-, .arst_n                     (arst_n                       )
 );
 
 endmodule : h

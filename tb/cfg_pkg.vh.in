@@ -25,12 +25,19 @@
 // POSSIBILITY OF SUCH DAMAGE.
 //========================================================================== //
 
-`ifndef H_TB_STK_CFG_PKG_VH
-`define H_TB_STK_CFG_PKG_VH
+`ifndef H_TB_CFG_PKG_VH
+`define H_TB_CFG_PKG_VH
 
 package cfg_pkg;
 
+// The total number of compute engines.
 parameter int ENGS_N = @H_ENGINES_N@;
+
+// Width of Key in bits
+parameter int K_W = @H_K_W@;
+
+// Width of Value in bits
+parameter int V_W = @H_V_W@;
 
 endpackage : cfg_pkg
 

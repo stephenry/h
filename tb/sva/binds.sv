@@ -23,42 +23,17 @@
 // CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
-// ========================================================================== //
+//========================================================================== //
 
-#ifndef H_TB_VSUPPORT_H
-#define H_TB_VSUPPORT_H
+`include "common_defs.vh"
 
-#include "log.h"
-#include "verilated.h"
-#include <algorithm>
+module binds;
 
-struct VSupport {
+bind mux mux_sva #(.N) b_mux_sva (.i_sel);
 
-  static bool logic(vluint8_t* v);
+bind dffen dffen_sva b_dffen_sva (.en);
 
-  static void logic(vluint8_t* v, bool b);
+bind v v_sva b_v_sva (.i_upd_vld, .i_upd_prod_id, .i_upd_cmd, .i_upd_key,
+  .i_upd_size, .i_lut_vld, .i_lut_prod_id, .i_lut_level, .clk, .arst_n);
 
-  template<std::size_t T_Words>
-  static void zero(VlWide<T_Words>& d) {
-    std::fill_n(d.data(), T_Words, 0);
-  }
-
-  template<std::size_t T_Size>
-  static bool eq(const VlWide<T_Size>& lhs, const VlWide<T_Size>& rhs) {
-    return std::equal(lhs.data(), lhs.data() + T_Size, rhs.data());
-  }
-
-};
-
-template<std::size_t T_Size>
-struct StreamRenderer<VlWide<T_Size>> {
-  static void write(std::ostream& os, const VlWide<T_Size>& v) {
-    const WData* d = v.data();
-    for (std::size_t i = 0; i < T_Size; i++) {
-      const bool showbase = (i == 0);
-      StreamRenderer<AsHex<WData>>::write(os, AsHex{d[i], showbase});
-    }
-  }
-};
-
-#endif
+endmodule : binds

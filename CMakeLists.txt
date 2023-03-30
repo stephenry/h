@@ -38,9 +38,6 @@ option(ENABLE_VCD "Enable waveform tracing." ON)
 # Enable SystemVerilog Assertions (SVA)
 option(ENABLE_SVA "Enable SystemVerilog assertions" ON)
 
-# The total number of compute engines.
-option(H_ENGINES_N "Number of compute engines 10")
-
 set(CMAKE_CXX_STANDARD 17)
 
 list(APPEND CMAKE_MODULE_PATH

@@ -25,8 +25,8 @@
 // POSSIBILITY OF SUCH DAMAGE.
 // ========================================================================== //
 
-#ifndef Q_TB_TEST_H
-#define Q_TB_TEST_H
+#ifndef H_TB_TEST_H
+#define H_TB_TEST_H
 
 #include "tb.h"
 #include <map>

@@ -25,8 +25,8 @@
 // POSSIBILITY OF SUCH DAMAGE.
 // ========================================================================== //
 
-#ifndef Q_TB_TB_H
-#define Q_TB_TB_H
+#ifndef H_TB_TB_H
+#define H_TB_TB_H
 
 #include "sim.h"
 #include "verilated.h"

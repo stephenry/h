@@ -25,8 +25,8 @@
 // POSSIBILITY OF SUCH DAMAGE.
 //========================================================================== //
 
-#ifndef Q_TB_LOG_H
-#define Q_TB_LOG_H
+#ifndef H_TB_LOG_H
+#define H_TB_LOG_H
 
 #include <iostream>
 #include <vector>
@@ -40,7 +40,7 @@
 #define MACRO_BEGIN    do {
 #define MACRO_END      } while (false)
 
-#define Q_ASSERT(__lg, __cond) \
+#define H_ASSERT(__lg, __cond) \
   MACRO_BEGIN \
   if (!(__cond)) { \
     ++::tb::Sim::errors; \
@@ -50,10 +50,10 @@
   } \
   MACRO_END
 
-#define Q_LOG(__lg, __level, __msg) \
-  Q_LOG_IF(__lg, true, __level, __msg)
+#define H_LOG(__lg, __level, __msg) \
+  H_LOG_IF(__lg, true, __level, __msg)
 
-#define Q_LOG_IF(__lg, __cond, __level, ...) \
+#define H_LOG_IF(__lg, __cond, __level, ...) \
   MACRO_BEGIN \
   if ((__lg) && (__cond)) { \
     __lg->__level(__VA_ARGS__); \

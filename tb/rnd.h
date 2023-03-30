@@ -25,8 +25,8 @@
 // POSSIBILITY OF SUCH DAMAGE.
 //========================================================================== //
 
-#ifndef V_TB_RND_H
-#define V_TB_RND_H
+#ifndef H_TB_RND_H
+#define H_TB_RND_H
 
 #include <random>
 #include <vector>

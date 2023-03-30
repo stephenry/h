@@ -25,8 +25,8 @@
 // POSSIBILITY OF SUCH DAMAGE.
 // ========================================================================== //
 
-#ifndef Q_TB_SIM_H
-#define Q_TB_SIM_H
+#ifndef H_TB_SIM_H
+#define H_TB_SIM_H
 
 #include <string>
 #include <memory>
